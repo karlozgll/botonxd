@@ -1,51 +1,224 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>✨ 1 Mes Contigo ✨</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      height: 100vh;
+      background: linear-gradient(to bottom, #2c003e, #4a148c, #7b1fa2);
+      color: #fff;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      overflow: hidden;
+      cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat916.cur'), auto;
+    }
 
-        .button-container {
-            position: relative;
-        }
+    .container {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
 
-        .button-container button {
-            margin: 0 10px;  /* Espacio entre los botones */
-        }
+    .heart-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
 
-        /* Estilo para el botón con position: absolute; y cursor: default; */
-        .absolute-button {
-            position: absolute;
-            cursor: default;
-        }
-    </style>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>XD :D</title>
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 105, 180, 0.7);
+      transform: rotate(45deg);
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.9);
+      animation: float 12s infinite linear;
+      border-radius: 4px;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: inherit;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
+
+    @keyframes float {
+      0%   { transform: translateY(100vh) rotate(45deg) scale(0.4); opacity: 0; }
+      10%  { opacity: 0.9; }
+      90%  { opacity: 0.9; }
+      100% { transform: translateY(-150px) rotate(720deg) scale(0.7); opacity: 0; }
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 9vw, 6.5rem);
+      color: #ff99cc;
+      text-shadow: 0 0 30px #ff69b4, 0 0 60px #c71585;
+      margin-bottom: 0.2em;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      color: #ffb6c1;
+      margin: 0.4em 0 1.2em;
+      letter-spacing: 2px;
+    }
+
+    .month {
+      font-size: 5rem;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 40px #ff1493;
+      margin: 0.3em 0;
+      animation: beat 1.8s infinite;
+    }
+
+    .letter {
+      max-width: 620px;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(255,182,193,0.25);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      margin: 1.5rem 1rem;
+      font-size: 1.28rem;
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.4s ease;
+    }
+
+    .letter.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .signature {
+      margin-top: 2.5rem;
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.2rem;
+      color: #ffccdd;
+      text-shadow: 0 0 25px #ff69b4;
+    }
+
+    .surprise-btn {
+      margin-top: 2rem;
+      padding: 1rem 2.8rem;
+      font-size: 1.4rem;
+      background: linear-gradient(45deg, #ff3366, #ff6b9d);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(255,51,102,0.5);
+      transition: all 0.4s;
+    }
+
+    .surprise-btn:hover {
+      transform: translateY(-6px) scale(1.08);
+      box-shadow: 0 20px 40px rgba(255,51,102,0.6);
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #ff69b4, 0 0 40px #c71585; }
+      to   { text-shadow: 0 0 40px #ff1493, 0 0 80px #ff69b4; }
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.12); }
+    }
+
+    @media (max-height: 680px) {
+      h1 { font-size: 3.8rem; }
+      .month { font-size: 3.8rem; }
+      .signature { font-size: 2.6rem; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="button-container">
-        <h1>¿ME PERDONAS?</h1>
-        <button onclick="alert('TE QUIERO BB <3')">SI</button>
-        <button class="absolute-button" id="movable-button">NO</button>
-    </div>
-    <script>
-        const button = document.getElementById('movable-button');
 
-        button.addEventListener('mouseover', () => {
-            const x = Math.random() * window.innerWidth/3;
-            const y = Math.random() * window.innerHeight/3;
+<div class="heart-bg" id="hearts"></div>
 
-            button.style.left = `${x}px`;
-            button.style.top = `${y}px`;
-        });
-    </script>
-    <script src="{{ url_for('static', filename='move-button.js') }}"></script>
+<div class="container">
+  <h1>¡1 MES!</h1>
+  <div class="month">30</div>
+  <h2>días siendo mi persona favorita</h2>
+
+  <div class="letter" id="carta">
+    <p>Amor,</p>
+    <p>Hoy se cumple exactamente un mes desde que mi corazón entendió que ya no quería latir sin el tuyo al lado.</p>
+    <p>En solo 30 días has logrado:</p>
+    <p>• Hacer que sonría como idiota mirando el celular<br>• Que me den ganas de tomar fotos de todo lo bonito que haces<br>• Que hasta el café sepa mejor cuando pienso en ti</p>
+    <p>Y lo más increíble… hacer que sienta que el tiempo vuela cuando estamos juntos… y que se detiene cuando no estás.</p>
+    <p>Gracias por este primer mes. Espero que vengan miles más… pero sobre todo, espero que vengan contigo.</p>
+    <div class="signature" id="firma">Tuy@ por siempre<span style="margin-left:8px;">❤️</span></div>
+  </div>
+
+  <button class="surprise-btn" id="sorprendeme">
+    <i class="fas fa-magic"></i> Tengo una sorpresita...
+  </button>
+</div>
+
+<script>
+  // Corazones flotantes
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 8 + 8) + 's';
+    heart.style.opacity = Math.random() * 0.6 + 0.4;
+    document.getElementById('hearts').appendChild(heart);
+    
+    setTimeout(() => heart.remove(), 15000);
+  }
+
+  setInterval(createHeart, 380);
+
+  // Revelar carta + sorpresa
+  const carta = document.getElementById('carta');
+  const btn = document.getElementById('sorprendeme');
+  const firma = document.getElementById('firma');
+
+  btn.addEventListener('click', () => {
+    carta.classList.add('visible');
+    
+    // Pequeña sorpresa extra después de 1.5 segundos
+    setTimeout(() => {
+      firma.innerHTML = 'Tuy@ por siempre <span style="font-size:1.4em;">❤️</span><br><small style="font-size:1rem; opacity:0.8;">(y los 29 días que faltan del mes que viene también)</small>';
+      
+      // Lanzar muchos corazones al apretar
+      for(let i = 0; i < 25; i++) {
+        setTimeout(createHeart, i * 80);
+      }
+    }, 1800);
+    
+    btn.remove();
+  });
+</script>
+
 </body>
 </html>
