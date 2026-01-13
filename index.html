@@ -12,24 +12,28 @@
       box-sizing: border-box;
     }
     
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+    
     body {
-      height: 100vh;
       background: linear-gradient(to bottom, #2c003e, #4a148c, #7b1fa2);
       color: #fff;
       font-family: 'Segoe UI', system-ui, sans-serif;
-      overflow: hidden;
+      min-height: 100vh;
       cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat916.cur'), auto;
     }
 
     .container {
       position: relative;
-      height: 100%;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 20px;
+      padding: 3vw 5vw;
     }
 
     .heart-bg {
@@ -41,12 +45,12 @@
 
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background: rgba(255, 105, 180, 0.7);
+      width: clamp(12px, 3vw, 20px);
+      height: clamp(12px, 3vw, 20px);
+      background: rgba(255, 105, 180, 0.6);
       transform: rotate(45deg);
-      box-shadow: 0 0 15px rgba(255, 105, 180, 0.9);
-      animation: float 12s infinite linear;
+      box-shadow: 0 0 12px rgba(255, 105, 180, 0.8);
+      animation: float linear infinite;
       border-radius: 4px;
     }
 
@@ -54,60 +58,60 @@
     .heart::after {
       content: "";
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 100%;
+      height: 100%;
       background: inherit;
       border-radius: 50%;
     }
 
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { left: 10px; top: 0; }
+    .heart::before { top: -50%; left: 0; }
+    .heart::after { left: 50%; top: 0; }
 
     @keyframes float {
-      0%   { transform: translateY(100vh) rotate(45deg) scale(0.4); opacity: 0; }
-      10%  { opacity: 0.9; }
-      90%  { opacity: 0.9; }
-      100% { transform: translateY(-150px) rotate(720deg) scale(0.7); opacity: 0; }
+      0%   { transform: translateY(110vh) rotate(45deg) scale(0.3); opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.7; }
+      100% { transform: translateY(-20vh) rotate(720deg) scale(0.6); opacity: 0; }
     }
 
     h1 {
-      font-size: clamp(3.2rem, 9vw, 6.5rem);
+      font-size: clamp(2.8rem, 12vw, 7rem);
       color: #ff99cc;
-      text-shadow: 0 0 30px #ff69b4, 0 0 60px #c71585;
+      text-shadow: 0 0 25px #ff69b4, 0 0 50px #c71585;
       margin-bottom: 0.2em;
-      animation: glow 3s ease-in-out infinite alternate;
+      animation: glow 4s ease-in-out infinite alternate;
     }
 
     h2 {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-size: clamp(1.4rem, 6vw, 2.4rem);
       color: #ffb6c1;
-      margin: 0.4em 0 1.2em;
-      letter-spacing: 2px;
+      margin: 0.5em 0 1.5em;
+      letter-spacing: 1.5px;
     }
 
     .month {
-      font-size: 5rem;
+      font-size: clamp(4rem, 18vw, 8rem);
       font-weight: 900;
       color: #fff;
-      text-shadow: 0 0 40px #ff1493;
-      margin: 0.3em 0;
-      animation: beat 1.8s infinite;
+      text-shadow: 0 0 35px #ff1493;
+      margin: 0.2em 0;
+      animation: beat 2s infinite;
     }
 
     .letter {
-      max-width: 620px;
-      background: rgba(255,255,255,0.07);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      padding: 2.5rem 2rem;
-      border: 1px solid rgba(255,182,193,0.25);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-      margin: 1.5rem 1rem;
-      font-size: 1.28rem;
-      line-height: 1.7;
+      max-width: clamp(320px, 85vw, 680px);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1.2rem, 4vw, 2rem);
+      border: 1px solid rgba(255,182,193,0.3);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+      margin: 1.5rem 0;
+      font-size: clamp(1.1rem, 4.5vw, 1.35rem);
+      line-height: 1.65;
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 1.4s ease;
+      transform: translateY(50px);
+      transition: all 1.5s ease;
     }
 
     .letter.visible {
@@ -116,45 +120,54 @@
     }
 
     .signature {
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       font-family: 'Dancing Script', cursive;
-      font-size: 3.2rem;
+      font-size: clamp(2.2rem, 9vw, 3.8rem);
       color: #ffccdd;
-      text-shadow: 0 0 25px #ff69b4;
+      text-shadow: 0 0 20px #ff69b4;
     }
 
     .surprise-btn {
       margin-top: 2rem;
-      padding: 1rem 2.8rem;
-      font-size: 1.4rem;
+      padding: clamp(0.9rem, 4vw, 1.2rem) clamp(1.8rem, 6vw, 3rem);
+      font-size: clamp(1.1rem, 5vw, 1.5rem);
       background: linear-gradient(45deg, #ff3366, #ff6b9d);
       color: white;
       border: none;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 10px 30px rgba(255,51,102,0.5);
-      transition: all 0.4s;
+      box-shadow: 0 8px 25px rgba(255,51,102,0.5);
+      transition: all 0.35s;
+      min-width: 220px;
     }
 
-    .surprise-btn:hover {
-      transform: translateY(-6px) scale(1.08);
-      box-shadow: 0 20px 40px rgba(255,51,102,0.6);
+    .surprise-btn:hover,
+    .surprise-btn:active {
+      transform: translateY(-5px) scale(1.06);
+      box-shadow: 0 15px 35px rgba(255,51,102,0.65);
     }
 
     @keyframes glow {
-      from { text-shadow: 0 0 20px #ff69b4, 0 0 40px #c71585; }
-      to   { text-shadow: 0 0 40px #ff1493, 0 0 80px #ff69b4; }
+      from { text-shadow: 0 0 15px #ff69b4, 0 0 35px #c71585; }
+      to   { text-shadow: 0 0 35px #ff1493, 0 0 70px #ff69b4; }
     }
 
     @keyframes beat {
       0%, 100% { transform: scale(1); }
-      50%      { transform: scale(1.12); }
+      50%      { transform: scale(1.08); }
     }
 
-    @media (max-height: 680px) {
-      h1 { font-size: 3.8rem; }
-      .month { font-size: 3.8rem; }
-      .signature { font-size: 2.6rem; }
+    /* Optimización para móviles: menos corazones y animación más suave */
+    @media (max-width: 768px) {
+      body { cursor: default; } /* Evita cursor personalizado en touch */
+      .heart { width: clamp(10px, 4vw, 16px); height: clamp(10px, 4vw, 16px); }
+      .letter { padding: 1.5rem 1.2rem; font-size: clamp(1rem, 4.2vw, 1.15rem); }
+      .surprise-btn { min-width: 80%; padding: 1.2rem 2rem; }
+    }
+
+    @media (min-width: 1200px) {
+      .container { padding: 4vw 10vw; }
+      .letter { max-width: 720px; padding: 3rem 3.5rem; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -184,19 +197,25 @@
 </div>
 
 <script>
-  // Corazones flotantes
+  // Corazones flotantes – menos frecuencia y duración en móvil para mejor rendimiento
   function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (Math.random() * 8 + 8) + 's';
-    heart.style.opacity = Math.random() * 0.6 + 0.4;
+    
+    // Duración variable + más lenta en móvil
+    const duration = window.innerWidth < 768 ? (Math.random() * 10 + 15) : (Math.random() * 8 + 10);
+    heart.style.animationDuration = duration + 's';
+    
+    heart.style.opacity = Math.random() * 0.5 + 0.3;
     document.getElementById('hearts').appendChild(heart);
     
-    setTimeout(() => heart.remove(), 15000);
+    setTimeout(() => heart.remove(), duration * 1000 + 2000);
   }
 
-  setInterval(createHeart, 380);
+  // Menos frecuencia en móvil
+  const interval = window.innerWidth < 768 ? 800 : 380;
+  setInterval(createHeart, interval);
 
   // Revelar carta + sorpresa
   const carta = document.getElementById('carta');
@@ -206,13 +225,13 @@
   btn.addEventListener('click', () => {
     carta.classList.add('visible');
     
-    // Pequeña sorpresa extra después de 1.5 segundos
     setTimeout(() => {
-      firma.innerHTML = 'Tuy@ por siempre <span style="font-size:1.4em;">❤️</span><br><small style="font-size:1rem; opacity:0.8;">(y los 29 días que faltan del mes que viene también)</small>';
+      firma.innerHTML = 'Tuy@ por siempre <span style="font-size:1.4em;">❤️</span><br><small style="font-size:0.9em; opacity:0.85;">(y los 29 días que faltan del mes que viene también)</small>';
       
-      // Lanzar muchos corazones al apretar
-      for(let i = 0; i < 25; i++) {
-        setTimeout(createHeart, i * 80);
+      // Lanzar más corazones solo si no es móvil muy bajo rendimiento
+      const burstCount = window.innerWidth < 500 ? 15 : 25;
+      for(let i = 0; i < burstCount; i++) {
+        setTimeout(createHeart, i * 100);
       }
     }, 1800);
     
